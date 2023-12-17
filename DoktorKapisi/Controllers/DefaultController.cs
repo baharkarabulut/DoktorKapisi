@@ -30,7 +30,8 @@ namespace DoktorKapisi.Controllers
         {
             return View();
         }
-        public ActionResult Giris()
+        
+        public ActionResult DoktorGiris()
         {
             return View();
         }

@@ -4,13 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DoktorKapisiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DoktorKapisiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bolumler">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BolumAdi" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="DoktorGiris">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="250" />
+          <Property Name="Sifre" Type="varchar" MaxLength="20" />
+          <Property Name="Ad" Type="varchar" MaxLength="200" />
+          <Property Name="Soyad" Type="varchar" MaxLength="400" />
+          <Property Name="UzmanlikAlani" Type="varchar" MaxLength="4000" />
+          <Property Name="Telefon" Type="varchar" MaxLength="10" />
+          <Property Name="Sehir" Type="varchar" MaxLength="20" />
+          <Property Name="KimlikBelgesi" Type="varbinary(max)" />
+          <Property Name="Cinsiyet" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DoktorKayit">
           <Key>
@@ -65,13 +80,13 @@
         </EntityType>
         <EntityContainer Name="DoktorKapisiModelStoreContainer">
           <EntitySet Name="Bolumler" EntityType="Self.Bolumler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoktorGiris" EntityType="Self.DoktorGiris" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoktorKayit" EntityType="Self.DoktorKayit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UyeAlim" EntityType="Self.UyeAlim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DoktorKapisiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -139,7 +154,23 @@
           <EntitySet Name="Randevu" EntityType="Self.Randevu" />
           <EntitySet Name="UyeAlim" EntityType="Self.UyeAlim" />
           <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
+          <EntitySet Name="DoktorGiris" EntityType="DoktorKapisiModel.DoktorGiris" />
         </EntityContainer>
+        <EntityType Name="DoktorGiris">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Soyad" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="UzmanlikAlani" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sehir" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KimlikBelgesi" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,6 +237,22 @@
                 <ScalarProperty Name="Tarih" ColumnName="Tarih" />
                 <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
                 <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoktorGiris">
+            <EntityTypeMapping TypeName="DoktorKapisiModel.DoktorGiris">
+              <MappingFragment StoreEntitySet="DoktorGiris">
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="KimlikBelgesi" ColumnName="KimlikBelgesi" />
+                <ScalarProperty Name="Sehir" ColumnName="Sehir" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="UzmanlikAlani" ColumnName="UzmanlikAlani" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

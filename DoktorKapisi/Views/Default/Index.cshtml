@@ -154,15 +154,9 @@
                                                        data-hash-offset="0" data-hash-offset-lg="70">Randevu Al</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/Default/DoktorMusunuz/" class="nav-link active" data-hash
+                                                    <a href="/DoktorGiris/Index/" class="nav-link active" data-hash
                                                        data-hash-offset="0" data-hash-offset-lg="70">
-                                                        Doktor girişi
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Default/Giris/" class="nav-link active" data-hash
-                                                       data-hash-offset="0" data-hash-offset-lg="70">
-                                                       Giriş
+                                                        Doktor Girişi
                                                     </a>
                                                 </li>
                                             </ul>
@@ -201,11 +195,71 @@
                                 Tele-Tıp, sağlık hizmetlerini uzaktan
                                 sağlama ve hastaların sağlık durumunu izleme amacıyla geliştirilmiş bir yöntemdir.
                             </p>
-
-                            <a href="/Default/RandevuAl/"
-                               class="btn btn-secondary positive-ls-2 btn-outline font-weight-bold text-2 btn-py-3 px-5 mt-2 appear-animation"
-                               data-appear-animation="fadeInUpShorter" data-appear-animation-delay="250"
-                               data-plugin-options="{'minWindowWidth': 0}">ONLİNE RANDEVU AL</a>
+                            <br />
+                            <div data-id="online-consultation-search-vue" data-tab-id="online-consultation" data-test-id="online-consultation" class="tab-pane active">
+                                <div data-v-4e0c6ec0="" class="row">
+                                    <div data-v-4e0c6ec0="" class="col-md-6 col-12 dropdown-col">
+                                        <div data-v-4e0c6ec0="" class="form-group m-0">
+                                            <select id="uzmanlik" class="form-control text-3 h-auto py-2" name="UzmanlikAlani" size="0" required="">
+                                                <option value="" disabled selected>Uzmanlık Seçin</option>
+                                                <option value="Aile Danışmanlığı">Aile Danışmanlığı</option>
+                                                <option value="Aile Hekimliği">Aile Hekimliği</option>
+                                                <option value="Fizyoterapi ve Rehabilitasyon">Fizyoterapi ve Rehabilitasyon</option>
+                                                <option value="Alerji Hastalıkları">Alerji Hastalıkları</option>
+                                                <option value="Çocuk Alerjisi">Çocuk Alerjisi</option>
+                                                <option value="Çocuk Gastroenteroloji, Hepatoloji ve Beslenme">Çocuk Gastroenteroloji, Hepatoloji ve Beslenme</option>
+                                                <option value="Çocuk Gelişimi">Çocuk Gelişimi</option>
+                                                <option value="Çocuk Genetik Hastalıkları">Çocuk Genetik Hastalıkları</option>
+                                                <option value="Diyetisyen">Diyetisyen</option>
+                                                <option value="Fitoterapi">Fitoterapi</option>
+                                                <option value="Fiziksel Tıp ve Rehabilitasyon">Fiziksel Tıp ve Rehabilitasyon</option>
+                                                <option value="Fizyoterapi ve Rehabilitasyon">Fizyoterapi ve Rehabilitasyon</option>
+                                                <option value="Göğüs Hastalıkları">Göğüs Hastalıkları</option>
+                                                <option value="Halk Sağlığı">Halk Sağlığı</option>
+                                                <option value="Psikiyatri">Psikiyatri</option>
+                                                <option value="Psikoloji">Psikoloji</option>
+                                                <option value="Psikolojik Danışma ve Rehberlik">Psikolojik Danışma ve Rehberlik</option>
+                                                <option value="Radyasyon Onkolojisi">Radyasyon Onkolojisi</option>
+                                                <option value="Radyoloji">Radyoloji</option>
+                                                <option value="Üroloji">Üroloji</option>
+                                            </select>
+                                        </div>
+                                    </div> <div data-v-4e0c6ec0="" class="col-md-6 col-12 button-col">
+                                        <button data-v-4e0c6ec0="" class="submit mt-1 mt-sm-0 btn btn-lg btn-block btn-primary" data-test-id="online-consultations-search-button">
+                                            Online randevu al
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-lg-4">
+                                    <div class="custom-select-1">
+                                        <select id="uzmanlik" class="form-control text-3 h-auto py-2" name="UzmanlikAlani" size="0" required="">
+                                            <option value="" disabled selected>Uzmanlık Seçin</option>
+                                            <option value="Aile Danışmanlığı">Aile Danışmanlığı</option>
+                                            <option value="Aile Hekimliği">Aile Hekimliği</option>
+                                            <option value="Alerji Hastalıkları">Alerji Hastalıkları</option>
+                                            <option value="Çocuk Alerjisi">Çocuk Alerjisi</option>
+                                            <option value="Çocuk Gastroenteroloji, Hepatoloji ve Beslenme">Çocuk Gastroenteroloji, Hepatoloji ve Beslenme</option>
+                                            <option value="Çocuk Gelişimi">Çocuk Gelişimi</option>
+                                            <option value="Çocuk Genetik Hastalıkları">Çocuk Genetik Hastalıkları</option>
+                                            <option value="Diyetisyen">Diyetisyen</option>
+                                            <option value="Fitoterapi">Fitoterapi</option>
+                                            <option value="Fiziksel Tıp ve Rehabilitasyon">Fiziksel Tıp ve Rehabilitasyon</option>
+                                            <option value="Fizyoterapi ve Rehabilitasyon">Fizyoterapi ve Rehabilitasyon</option>
+                                            <option value="Göğüs Hastalıkları">Göğüs Hastalıkları</option>
+                                            <option value="Halk Sağlığı">Halk Sağlığı</option>
+                                            <option value="Psikiyatri">Psikiyatri</option>
+                                            <option value="Psikoloji">Psikoloji</option>
+                                            <option value="Psikolojik Danışma ve Rehberlik">Psikolojik Danışma ve Rehberlik</option>
+                                            <option value="Radyasyon Onkolojisi">Radyasyon Onkolojisi</option>
+                                            <option value="Radyoloji">Radyoloji</option>
+                                            <option value="Üroloji">Üroloji</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <a href="/Default/RandevuAl/" class="btn btn-secondary positive-ls-2 btn-outline font-weight-bold text-2 btn-py-3 px-5 mt-2 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}">ONLİNE RANDEVU AL</a>
+                                </div>*@
                         </div>
                         <div class="col-lg-4 pt-5 pt-lg-0 text-center">
                             <div class="custom-carousel-1 m-auto">
@@ -240,6 +294,83 @@
                         <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
                             <div class="card-body text-center px-4 py-5">
                                 <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Aile Danışmanlığı
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Aile Hekimliği
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Alerji Hastalıkları
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Çocuk Alerjisi
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Fizyoterapi ve Rehabilitasyon
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Diyetisyen
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
+                                    Halk Sağlığı
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="py-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
+                            <div class="card-body text-center px-4 py-5">
+                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
                                     Psikiyatri
                                 </h2>
                             </div>
@@ -251,84 +382,7 @@
                         <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
                             <div class="card-body text-center px-4 py-5">
                                 <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Üroloji
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Kardiyoloji
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Nöroloji
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Fizik Tedavi Uzmanları
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Genel Cerrahlar
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Metabolik Cerrahi Uzmanları
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Odyolog
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="py-5">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card custom-card-style-1 border-0 border-radius-0 custom-box-shadow-1">
-                            <div class="card-body text-center px-4 py-5">
-                                <h2 class="card-title alternative-font-4 text-color-dark font-weight-semibold line-height-1 text-5 mb-3">
-                                    Halk Sağlığı Hekimleri
+                                    Radyoloji
                                 </h2>
                             </div>
                         </div>
@@ -548,68 +602,97 @@
             </div>
         </div>
     </div>
-        <footer id="footer" class="bg-transparent border-0">
-            <div class="footer-copyright bg-transparent">
-                <div class="container">
-                    <hr class="bg-dark opacity-1 m-0">
-                    <div class="row py-4">
-                        <div class="col-md-6 py-4 text-center text-md-start">
-                            <p class="mb-0 text-3 opacity-8 font-weight-medium">
-                                Mevsim © Copyright 2024. Tüm haklar
-                                gizlidir.
-                            </p>
-                        </div>
-                        <div class="col-md-6 py-4">
-                            <div class="footer-nav footer-nav-links">
-                                <nav class="justify-content-end p-relative top-3">
-                                    <ul class="nav" id="footerNav">
-                                        <li>
-                                            <a class="text-dark text-color-hover-primary font-weight-semibold text-capitalize text-4-5"
-                                               href="/Default/RandevuAl/">Randevu Al</a>
-                                        </li>
-                                        <li>
-                                            <a class="text-dark text-color-hover-primary font-weight-semibold text-capitalize text-4-5"
-                                               href="/Default/DoktorMusunuz/">Doktor musunuz?</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
+    <footer id="footer" class="bg-transparent border-0">
+        <div class="footer-copyright bg-transparent">
+            <div class="container">
+                <hr class="bg-dark opacity-1 m-0">
+                <div class="row py-4">
+                    <div class="col-md-6 py-4 text-center text-md-start">
+                        <p class="mb-0 text-3 opacity-8 font-weight-medium">
+                            Mevsim © Copyright 2024. Tüm haklar
+                            gizlidir.
+                        </p>
+                    </div>
+                    <div class="col-md-6 py-4">
+                        <div class="footer-nav footer-nav-links">
+                            <nav class="justify-content-end p-relative top-3">
+                                <ul class="nav" id="footerNav">
+                                    <li>
+                                        <a class="text-dark text-color-hover-primary font-weight-semibold text-capitalize text-4-5"
+                                           href="/Default/RandevuAl/">Randevu Al</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-dark text-color-hover-primary font-weight-semibold text-capitalize text-4-5"
+                                           href="/Default/DoktorMusunuz/">Doktor musunuz?</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Vendor -->
-        <script src="~/DoktorKapısı/vendor/jquery/jquery.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/jquery.appear/jquery.appear.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/jquery.easing/jquery.easing.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/jquery.cookie/jquery.cookie.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/jquery.validation/jquery.validate.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/jquery.gmap/jquery.gmap.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/lazysizes/lazysizes.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/isotope/jquery.isotope.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/owl.carousel/owl.carousel.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/vide/jquery.vide.min.js"></script>
-        <script src="~/DoktorKapısı/vendor/vivus/vivus.min.js"></script>
+        </div>
+    </footer>
+    <!-- Vendor -->
+    <script src="~/DoktorKapısı/vendor/jquery/jquery.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/jquery.appear/jquery.appear.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/jquery.validation/jquery.validate.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/lazysizes/lazysizes.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/isotope/jquery.isotope.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/vide/jquery.vide.min.js"></script>
+    <script src="~/DoktorKapısı/vendor/vivus/vivus.min.js"></script>
 
-        <!-- Theme Base, Components and Settings -->
-        <script src="~/DoktorKapısı/js/theme.js"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/DoktorKapısı/js/theme.js"></script>
 
-        <!-- Current Page Vendor and Views -->
-        <script src="~/DoktorKapısı/js/views/view.contact.js"></script>
+    <!-- Current Page Vendor and Views -->
+    <script src="~/DoktorKapısı/js/views/view.contact.js"></script>
 
-        <!-- Demo -->
-        <script src="~/DoktorKapısı/js/demos/demo-app-landing.js"></script>
+    <!-- Demo -->
+    <script src="~/DoktorKapısı/js/demos/demo-app-landing.js"></script>
 
-        <!-- Theme Custom -->
-        <script src="~/DoktorKapısı/js/custom.js"></script>
+    <!-- Theme Custom -->
+    <script src="~/DoktorKapısı/js/custom.js"></script>
 
-        <!-- Theme Initialization Files -->
-        <script src="~/DoktorKapısı/js/theme.init.js"></script>
+    <!-- Theme Initialization Files -->
+    <script src="~/DoktorKapısı/js/theme.init.js"></script>
+    <script>
+        document.getElementById('uzmanlik').addEventListener('change', function () {
+            // Seçilen uzmanlık alanının değerini al
+            var selectedUzmanlik = this.value;
 
+            // Uzmanlık alanlarına ait sayfa yollarını belirleyin
+            var uzmanlikSayfaYollari = {
+                'Aile Danışmanlığı': 'aile-danismanligi.cshtml',
+                'Aile Hekimliği': 'aile-hekimligi.cshtml',
+                'Alerji Hastalıkları': 'alerji-hastaliklari.cshtml',
+                'Çocuk Alerjisi': 'cocuk-alerjisi.cshtml',
+                'Çocuk Gelişimi': 'cocuk-gelisimi.cshtml',
+                'Diyetisyen': 'diyetisyen.cshtml',
+                'Fizyoterapi ve Rehabilitasyon': 'fizyoterapi.cshtml',
+                'Halk Sağlığı': 'halk-sagligi.cshtml',
+                'Psikiyatri': 'psikiyatri.cshtml',
+                'Psikoloji': 'psikoloji.cshtml',
+ // Diğer uzmanlık alanları buraya eklenebilir
+            };
+
+            // Seçilen uzmanlık alanına ait sayfa yolunu al
+            var uzmanlikSayfaYolu = uzmanlikSayfaYollari[selectedUzmanlik];
+
+            // Eğer sayfa yolu varsa, yönlendirme işlemini gerçekleştir
+            if (uzmanlikSayfaYolu) {
+                // Bu örnekte sayfa yolu varsa varsayılan sayfanın altında olduğunu varsayalım
+                window.location.href = '/Default/' + uzmanlikSayfaYolu;
+            }
+        });
+    </script>
 </body>
 
 </html>
