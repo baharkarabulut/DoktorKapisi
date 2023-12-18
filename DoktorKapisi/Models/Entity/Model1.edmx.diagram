@@ -11,6 +11,8 @@
         <EntityTypeShape EntityType="DoktorKapisiModel.UyeAlim" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DoktorKapisiModel.Yorumlar" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DoktorKapisiModel.DoktorGiris" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DoktorKapisiModel.Doktorlar" Width="1.5" PointX="7.25" PointY="0.625" />
+        <AssociationConnector Association="DoktorKapisiModel.FK_Doktorlar_Bolumler" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

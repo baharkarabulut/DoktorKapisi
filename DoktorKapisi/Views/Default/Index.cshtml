@@ -1,4 +1,5 @@
-﻿
+﻿@using DoktorKapisi.ViewModels;
+@model AnasayfaViewModel
 @{
     Layout = null;
 }
@@ -200,7 +201,9 @@
                                 <div data-v-4e0c6ec0="" class="row">
                                     <div data-v-4e0c6ec0="" class="col-md-6 col-12 dropdown-col">
                                         <div data-v-4e0c6ec0="" class="form-group m-0">
-                                            <select id="uzmanlik" class="form-control text-3 h-auto py-2" name="UzmanlikAlani" size="0" required="">
+                                            @Html.DropDownListFor(m => m.BolumListesi,new SelectList(Model.BolumListesi,"Value","Text"), "Uzmanlık Seçin", new { @class="form-control text-3 h-auto py-2"})
+
+                                            @*<select id="uzmanlik" class="form-control text-3 h-auto py-2" name="UzmanlikAlani" size="0" required="">
                                                 <option value="" disabled selected>Uzmanlık Seçin</option>
                                                 <option value="Aile Danışmanlığı">Aile Danışmanlığı</option>
                                                 <option value="Aile Hekimliği">Aile Hekimliği</option>
@@ -222,10 +225,10 @@
                                                 <option value="Radyasyon Onkolojisi">Radyasyon Onkolojisi</option>
                                                 <option value="Radyoloji">Radyoloji</option>
                                                 <option value="Üroloji">Üroloji</option>
-                                            </select>
+                                            </select>*@
                                         </div>
                                     </div> <div data-v-4e0c6ec0="" class="col-md-6 col-12 button-col">
-                                        <button data-v-4e0c6ec0="" class="submit mt-1 mt-sm-0 btn btn-lg btn-block btn-primary" data-test-id="online-consultations-search-button">
+                                        <button data-v-4e0c6ec0="" class="submit mt-1 mt-sm-0 btn btn-lg btn-block btn-primary" data-test-id="online-consultations-search-button" onclick="getBolumId()">
                                             Online randevu al
                                         </button>
                                     </div>
@@ -663,7 +666,22 @@
 
     <!-- Theme Initialization Files -->
     <script src="~/DoktorKapısı/js/theme.init.js"></script>
+
     <script>
+        function getBolumId() {
+            var selectedBolumValue = document.getElementById("BolumListesi").value;
+            console.log("bolumId: ", selectedBolumValue);
+
+            //alert("tıklandı")
+
+            var redirectUrl = '/RandevuAl/Ara/' + selectedBolumValue;
+
+            window.location.href = redirectUrl;
+
+
+        }
+    </script>
+    @*<script>
         document.getElementById('uzmanlik').addEventListener('change', function () {
             // Seçilen uzmanlık alanının değerini al
             var selectedUzmanlik = this.value;
@@ -692,7 +710,7 @@
                 window.location.href = '/Default/' + uzmanlikSayfaYolu;
             }
         });
-    </script>
+    </script>*@
 </body>
 
 </html>

@@ -31,5 +31,6 @@ namespace DoktorKapisi.Models.Entity
         public virtual DbSet<UyeAlim> UyeAlim { get; set; }
         public virtual DbSet<Yorumlar> Yorumlar { get; set; }
         public virtual DbSet<DoktorGiris> DoktorGiris { get; set; }
+        public virtual DbSet<Doktorlar> Doktorlar { get; set; }
     }
 }

@@ -14,7 +14,16 @@ namespace DoktorKapisi.Models.Entity
     
     public partial class Bolumler
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bolumler()
+        {
+            this.Doktorlar = new HashSet<Doktorlar>();
+        }
+    
         public int id { get; set; }
         public string BolumAdi { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Doktorlar> Doktorlar { get; set; }
     }
 }

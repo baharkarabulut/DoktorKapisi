@@ -42,6 +42,18 @@
           <Property Name="KimlikBelgesi" Type="varchar" MaxLength="2000" />
           <Property Name="KurumTuru" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="Doktorlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BolumId" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Resim" Type="nvarchar" MaxLength="150" />
+          <Property Name="Unvan" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="AktifMi" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Randevu">
           <Key>
             <PropertyRef Name="id" />
@@ -78,13 +90,30 @@
           <Property Name="Fotograf" Type="varchar" MaxLength="200" />
           <Property Name="Yorum" Type="varchar" MaxLength="8000" />
         </EntityType>
+        <Association Name="FK_Doktorlar_Bolumler">
+          <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="1" />
+          <End Role="Doktorlar" Type="Self.Doktorlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolumler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doktorlar">
+              <PropertyRef Name="BolumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DoktorKapisiModelStoreContainer">
           <EntitySet Name="Bolumler" EntityType="Self.Bolumler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoktorGiris" EntityType="Self.DoktorGiris" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoktorKayit" EntityType="Self.DoktorKayit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktorlar" EntityType="Self.Doktorlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UyeAlim" EntityType="Self.UyeAlim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Doktorlar_Bolumler" Association="Self.FK_Doktorlar_Bolumler">
+            <End Role="Bolumler" EntitySet="Bolumler" />
+            <End Role="Doktorlar" EntitySet="Doktorlar" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -96,6 +125,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BolumAdi" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Doktorlar" Relationship="DoktorKapisiModel.FK_Doktorlar_Bolumler" FromRole="Bolumler" ToRole="Doktorlar" />
         </EntityType>
         <EntityType Name="DoktorKayit">
           <Key>
@@ -155,6 +185,11 @@
           <EntitySet Name="UyeAlim" EntityType="Self.UyeAlim" />
           <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
           <EntitySet Name="DoktorGiris" EntityType="DoktorKapisiModel.DoktorGiris" />
+          <EntitySet Name="Doktorlar" EntityType="DoktorKapisiModel.Doktorlar" />
+          <AssociationSet Name="FK_Doktorlar_Bolumler" Association="DoktorKapisiModel.FK_Doktorlar_Bolumler">
+            <End Role="Bolumler" EntitySet="Bolumler" />
+            <End Role="Doktorlar" EntitySet="Doktorlar" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DoktorGiris">
           <Key>
@@ -171,6 +206,31 @@
           <Property Name="KimlikBelgesi" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Doktorlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BolumId" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Resim" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Unvan" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bolumler" Relationship="DoktorKapisiModel.FK_Doktorlar_Bolumler" FromRole="Doktorlar" ToRole="Bolumler" />
+        </EntityType>
+        <Association Name="FK_Doktorlar_Bolumler">
+          <End Type="DoktorKapisiModel.Bolumler" Role="Bolumler" Multiplicity="1" />
+          <End Type="DoktorKapisiModel.Doktorlar" Role="Doktorlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolumler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doktorlar">
+              <PropertyRef Name="BolumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -253,6 +313,19 @@
                 <ScalarProperty Name="Sifre" ColumnName="Sifre" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktorlar">
+            <EntityTypeMapping TypeName="DoktorKapisiModel.Doktorlar">
+              <MappingFragment StoreEntitySet="Doktorlar">
+                <ScalarProperty Name="AktifMi" ColumnName="AktifMi" />
+                <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="BolumId" ColumnName="BolumId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

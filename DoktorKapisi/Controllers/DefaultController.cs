@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DoktorKapisi.Models.Entity;
+using DoktorKapisi.ViewModels;
 
 namespace DoktorKapisi.Controllers
 {
@@ -13,7 +14,21 @@ namespace DoktorKapisi.Controllers
         // GET: Default
         public ActionResult Index()
         {
-            return View();
+            var bolumler = db.Bolumler.ToList();
+
+            var bolumlerList = new List<SelectListItem>();
+
+            foreach (var bolum in bolumler)
+            {
+                bolumlerList.Add(new SelectListItem { Value = bolum.id.ToString(), Text = bolum.BolumAdi });
+            }
+
+            var model = new AnasayfaViewModel
+            {
+                BolumListesi = bolumlerList
+            };
+
+            return View(model);
         }
 
         public ActionResult Hakkimizda()
