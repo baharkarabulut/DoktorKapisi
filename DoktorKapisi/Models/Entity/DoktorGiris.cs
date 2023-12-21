@@ -24,5 +24,12 @@ namespace DoktorKapisi.Models.Entity
         public string Sehir { get; set; }
         public byte[] KimlikBelgesi { get; set; }
         public string Cinsiyet { get; set; }
+        public Nullable<int> BolumId { get; set; }
+        public Nullable<int> SehirId { get; set; }
+        public Nullable<int> CinsiyetId { get; set; }
+    
+        public virtual Bolumler Bolumler { get; set; }
+        public virtual Sehirler Sehirler { get; set; }
+        public virtual Cinsiyet Cinsiyet1 { get; set; }
     }
 }

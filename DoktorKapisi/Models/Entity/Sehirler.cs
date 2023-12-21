@@ -12,17 +12,18 @@ namespace DoktorKapisi.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class DoktorKayit
+    public partial class Sehirler
     {
-        public int id { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public string UzmanlikAlani { get; set; }
-        public string Telefon { get; set; }
-        public string Mail { get; set; }
-        public string Sifre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sehirler()
+        {
+            this.DoktorGiris = new HashSet<DoktorGiris>();
+        }
+    
+        public int Id { get; set; }
         public string Sehir { get; set; }
-        public string KimlikBelgesi { get; set; }
-        public string KurumTuru { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DoktorGiris> DoktorGiris { get; set; }
     }
 }

@@ -507,10 +507,10 @@
     <Compile Include="Models\Entity\Bolumler.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\DoktorGiris.cs">
+    <Compile Include="Models\Entity\Cinsiyet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\DoktorKayit.cs">
+    <Compile Include="Models\Entity\DoktorGiris.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Doktorlar.cs">
@@ -534,6 +534,15 @@
     <Compile Include="Models\Entity\Randevu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\Sehirler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Tarihler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\UyeAlim.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -542,6 +551,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AnasayfaViewModel.cs" />
+    <Compile Include="ViewModels\CombinedViewModel.cs" />
+    <Compile Include="ViewModels\DoktorGirisViewModel.cs" />
     <Compile Include="ViewModels\RandevuAlViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

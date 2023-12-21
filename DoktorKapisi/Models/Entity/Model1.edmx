@@ -12,35 +12,30 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BolumAdi" Type="varchar" MaxLength="4000" />
         </EntityType>
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="DoktorGiris">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Mail" Type="varchar" MaxLength="250" />
-          <Property Name="Sifre" Type="varchar" MaxLength="20" />
-          <Property Name="Ad" Type="varchar" MaxLength="200" />
-          <Property Name="Soyad" Type="varchar" MaxLength="400" />
+          <Property Name="Mail" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Sifre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Soyad" Type="varchar" MaxLength="400" Nullable="false" />
           <Property Name="UzmanlikAlani" Type="varchar" MaxLength="4000" />
-          <Property Name="Telefon" Type="varchar" MaxLength="10" />
+          <Property Name="Telefon" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Sehir" Type="varchar" MaxLength="20" />
-          <Property Name="KimlikBelgesi" Type="varbinary(max)" />
+          <Property Name="KimlikBelgesi" Type="varbinary" MaxLength="50" />
           <Property Name="Cinsiyet" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="DoktorKayit">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Ad" Type="varchar" MaxLength="200" />
-          <Property Name="Soyad" Type="varchar" MaxLength="400" />
-          <Property Name="UzmanlikAlani" Type="varchar" MaxLength="4000" />
-          <Property Name="Telefon" Type="varchar" MaxLength="10" />
-          <Property Name="Mail" Type="varchar" MaxLength="250" />
-          <Property Name="Sifre" Type="varchar" MaxLength="20" />
-          <Property Name="Sehir" Type="varchar" MaxLength="20" />
-          <Property Name="KimlikBelgesi" Type="varchar" MaxLength="2000" />
-          <Property Name="KurumTuru" Type="varchar" MaxLength="200" />
+          <Property Name="BolumId" Type="int" />
+          <Property Name="SehirId" Type="int" />
+          <Property Name="CinsiyetId" Type="int" />
         </EntityType>
         <EntityType Name="Doktorlar">
           <Key>
@@ -54,6 +49,14 @@
           <Property Name="Unvan" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="AktifMi" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="DoktorlarToTarihler">
+          <Key>
+            <PropertyRef Name="DoktorId" />
+            <PropertyRef Name="TarihId" />
+          </Key>
+          <Property Name="DoktorId" Type="int" Nullable="false" />
+          <Property Name="TarihId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Randevu">
           <Key>
             <PropertyRef Name="id" />
@@ -64,6 +67,30 @@
           <Property Name="Telefon" Type="varchar" MaxLength="10" />
           <Property Name="Mail" Type="varchar" MaxLength="250" />
           <Property Name="EkBilgi" Type="varchar" MaxLength="6000" />
+        </EntityType>
+        <EntityType Name="Sehirler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sehir" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tarihler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarih" Type="date" />
         </EntityType>
         <EntityType Name="UyeAlim">
           <Key>
@@ -102,17 +129,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DoktorlarToTarihler_Doktorlar">
+          <End Role="Doktorlar" Type="Self.Doktorlar" Multiplicity="1" />
+          <End Role="DoktorlarToTarihler" Type="Self.DoktorlarToTarihler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktorlar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoktorlarToTarihler">
+              <PropertyRef Name="DoktorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoktorlarToTarihler_Tarihler">
+          <End Role="Tarihler" Type="Self.Tarihler" Multiplicity="1" />
+          <End Role="DoktorlarToTarihler" Type="Self.DoktorlarToTarihler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarihler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoktorlarToTarihler">
+              <PropertyRef Name="TarihId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DoktorKapisiModelStoreContainer">
           <EntitySet Name="Bolumler" EntityType="Self.Bolumler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinsiyet" EntityType="Self.Cinsiyet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoktorGiris" EntityType="Self.DoktorGiris" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DoktorKayit" EntityType="Self.DoktorKayit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doktorlar" EntityType="Self.Doktorlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoktorlarToTarihler" EntityType="Self.DoktorlarToTarihler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sehirler" EntityType="Self.Sehirler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarihler" EntityType="Self.Tarihler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UyeAlim" EntityType="Self.UyeAlim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Doktorlar_Bolumler" Association="Self.FK_Doktorlar_Bolumler">
             <End Role="Bolumler" EntitySet="Bolumler" />
             <End Role="Doktorlar" EntitySet="Doktorlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoktorlarToTarihler_Doktorlar" Association="Self.FK_DoktorlarToTarihler_Doktorlar">
+            <End Role="Doktorlar" EntitySet="Doktorlar" />
+            <End Role="DoktorlarToTarihler" EntitySet="DoktorlarToTarihler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoktorlarToTarihler_Tarihler" Association="Self.FK_DoktorlarToTarihler_Tarihler">
+            <End Role="Tarihler" EntitySet="Tarihler" />
+            <End Role="DoktorlarToTarihler" EntitySet="DoktorlarToTarihler" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -126,21 +189,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BolumAdi" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Doktorlar" Relationship="DoktorKapisiModel.FK_Doktorlar_Bolumler" FromRole="Bolumler" ToRole="Doktorlar" />
-        </EntityType>
-        <EntityType Name="DoktorKayit">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Soyad" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="UzmanlikAlani" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Mail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Sehir" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="KimlikBelgesi" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="KurumTuru" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoktorGiris" Relationship="DoktorKapisiModel.FK_DoktorGiris_Bolumler" FromRole="Bolumler" ToRole="DoktorGiris" />
         </EntityType>
         <EntityType Name="Randevu">
           <Key>
@@ -180,7 +229,6 @@
         </EntityType>
         <EntityContainer Name="DoktorKapisiEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bolumler" EntityType="Self.Bolumler" />
-          <EntitySet Name="DoktorKayit" EntityType="Self.DoktorKayit" />
           <EntitySet Name="Randevu" EntityType="Self.Randevu" />
           <EntitySet Name="UyeAlim" EntityType="Self.UyeAlim" />
           <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
@@ -190,21 +238,47 @@
             <End Role="Bolumler" EntitySet="Bolumler" />
             <End Role="Doktorlar" EntitySet="Doktorlar" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="DoktorKapisiModel.sysdiagrams" />
+          <EntitySet Name="Tarihler" EntityType="DoktorKapisiModel.Tarihler" />
+          <AssociationSet Name="FK_DoktorGiris_Bolumler" Association="DoktorKapisiModel.FK_DoktorGiris_Bolumler">
+            <End Role="Bolumler" EntitySet="Bolumler" />
+            <End Role="DoktorGiris" EntitySet="DoktorGiris" />
+          </AssociationSet>
+          <AssociationSet Name="DoktorlarToTarihler" Association="DoktorKapisiModel.DoktorlarToTarihler">
+            <End Role="Doktorlar" EntitySet="Doktorlar" />
+            <End Role="Tarihler" EntitySet="Tarihler" />
+          </AssociationSet>
+          <EntitySet Name="Sehirler" EntityType="DoktorKapisiModel.Sehirler" />
+          <AssociationSet Name="FK_DoktorGiris_Sehirler" Association="DoktorKapisiModel.FK_DoktorGiris_Sehirler">
+            <End Role="Sehirler" EntitySet="Sehirler" />
+            <End Role="DoktorGiris" EntitySet="DoktorGiris" />
+          </AssociationSet>
+          <EntitySet Name="Cinsiyet" EntityType="DoktorKapisiModel.Cinsiyet" />
+          <AssociationSet Name="FK_DoktorGiris_Cinsiyet" Association="DoktorKapisiModel.FK_DoktorGiris_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="DoktorGiris" EntitySet="DoktorGiris" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DoktorGiris">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Mail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Ad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Soyad" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UzmanlikAlani" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sehir" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="KimlikBelgesi" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="KimlikBelgesi" Type="Binary" FixedLength="false" MaxLength="50" />
           <Property Name="Cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BolumId" Type="Int32" />
+          <NavigationProperty Name="Bolumler" Relationship="DoktorKapisiModel.FK_DoktorGiris_Bolumler" FromRole="DoktorGiris" ToRole="Bolumler" />
+          <Property Name="SehirId" Type="Int32" />
+          <NavigationProperty Name="Sehirler" Relationship="DoktorKapisiModel.FK_DoktorGiris_Sehirler" FromRole="DoktorGiris" ToRole="Sehirler" />
+          <Property Name="CinsiyetId" Type="Int32" />
+          <NavigationProperty Name="Cinsiyet1" Relationship="DoktorKapisiModel.FK_DoktorGiris_Cinsiyet" FromRole="DoktorGiris" ToRole="Cinsiyet" />
         </EntityType>
         <EntityType Name="Doktorlar">
           <Key>
@@ -218,6 +292,7 @@
           <Property Name="Unvan" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="AktifMi" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Bolumler" Relationship="DoktorKapisiModel.FK_Doktorlar_Bolumler" FromRole="Doktorlar" ToRole="Bolumler" />
+          <NavigationProperty Name="Tarihler" Relationship="DoktorKapisiModel.DoktorlarToTarihler" FromRole="Doktorlar" ToRole="Tarihler" />
         </EntityType>
         <Association Name="FK_Doktorlar_Bolumler">
           <End Type="DoktorKapisiModel.Bolumler" Role="Bolumler" Multiplicity="1" />
@@ -228,6 +303,80 @@
             </Principal>
             <Dependent Role="Doktorlar">
               <PropertyRef Name="BolumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tarihler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Doktorlar" Relationship="DoktorKapisiModel.DoktorlarToTarihler" FromRole="Tarihler" ToRole="Doktorlar" />
+        </EntityType>
+        <Association Name="FK_DoktorGiris_Bolumler">
+          <End Type="DoktorKapisiModel.Bolumler" Role="Bolumler" Multiplicity="0..1" />
+          <End Type="DoktorKapisiModel.DoktorGiris" Role="DoktorGiris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolumler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DoktorGiris">
+              <PropertyRef Name="BolumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DoktorlarToTarihler">
+          <End Type="DoktorKapisiModel.Doktorlar" Role="Doktorlar" Multiplicity="*" />
+          <End Type="DoktorKapisiModel.Tarihler" Role="Tarihler" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Sehirler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sehir" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoktorGiris" Relationship="DoktorKapisiModel.FK_DoktorGiris_Sehirler" FromRole="Sehirler" ToRole="DoktorGiris" />
+        </EntityType>
+        <Association Name="FK_DoktorGiris_Sehirler">
+          <End Type="DoktorKapisiModel.Sehirler" Role="Sehirler" Multiplicity="0..1" />
+          <End Type="DoktorKapisiModel.DoktorGiris" Role="DoktorGiris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehirler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoktorGiris">
+              <PropertyRef Name="SehirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoktorGiris" Relationship="DoktorKapisiModel.FK_DoktorGiris_Cinsiyet" FromRole="Cinsiyet" ToRole="DoktorGiris" />
+        </EntityType>
+        <Association Name="FK_DoktorGiris_Cinsiyet">
+          <End Type="DoktorKapisiModel.Cinsiyet" Role="Cinsiyet" Multiplicity="0..1" />
+          <End Type="DoktorKapisiModel.DoktorGiris" Role="DoktorGiris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoktorGiris">
+              <PropertyRef Name="CinsiyetId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -242,22 +391,6 @@
               <MappingFragment StoreEntitySet="Bolumler">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DoktorKayit">
-            <EntityTypeMapping TypeName="DoktorKapisiModel.DoktorKayit">
-              <MappingFragment StoreEntitySet="DoktorKayit">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Ad" ColumnName="Ad" />
-                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
-                <ScalarProperty Name="UzmanlikAlani" ColumnName="UzmanlikAlani" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
-                <ScalarProperty Name="Sehir" ColumnName="Sehir" />
-                <ScalarProperty Name="KimlikBelgesi" ColumnName="KimlikBelgesi" />
-                <ScalarProperty Name="KurumTuru" ColumnName="KurumTuru" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -303,6 +436,9 @@
           <EntitySetMapping Name="DoktorGiris">
             <EntityTypeMapping TypeName="DoktorKapisiModel.DoktorGiris">
               <MappingFragment StoreEntitySet="DoktorGiris">
+                <ScalarProperty Name="CinsiyetId" ColumnName="CinsiyetId" />
+                <ScalarProperty Name="SehirId" ColumnName="SehirId" />
+                <ScalarProperty Name="BolumId" ColumnName="BolumId" />
                 <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
                 <ScalarProperty Name="KimlikBelgesi" ColumnName="KimlikBelgesi" />
                 <ScalarProperty Name="Sehir" ColumnName="Sehir" />
@@ -325,6 +461,49 @@
                 <ScalarProperty Name="Soyad" ColumnName="Soyad" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="BolumId" ColumnName="BolumId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DoktorKapisiModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarihler">
+            <EntityTypeMapping TypeName="DoktorKapisiModel.Tarihler">
+              <MappingFragment StoreEntitySet="Tarihler">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DoktorlarToTarihler" TypeName="DoktorKapisiModel.DoktorlarToTarihler" StoreEntitySet="DoktorlarToTarihler">
+            <EndProperty Name="Tarihler">
+              <ScalarProperty Name="Id" ColumnName="TarihId" />
+            </EndProperty>
+            <EndProperty Name="Doktorlar">
+              <ScalarProperty Name="Id" ColumnName="DoktorId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Sehirler">
+            <EntityTypeMapping TypeName="DoktorKapisiModel.Sehirler">
+              <MappingFragment StoreEntitySet="Sehirler">
+                <ScalarProperty Name="Sehir" ColumnName="Sehir" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinsiyet">
+            <EntityTypeMapping TypeName="DoktorKapisiModel.Cinsiyet">
+              <MappingFragment StoreEntitySet="Cinsiyet">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

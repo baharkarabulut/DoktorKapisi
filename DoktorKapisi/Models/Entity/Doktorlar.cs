@@ -14,6 +14,12 @@ namespace DoktorKapisi.Models.Entity
     
     public partial class Doktorlar
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Doktorlar()
+        {
+            this.Tarihler = new HashSet<Tarihler>();
+        }
+    
         public int Id { get; set; }
         public int BolumId { get; set; }
         public string Ad { get; set; }
@@ -23,5 +29,7 @@ namespace DoktorKapisi.Models.Entity
         public bool AktifMi { get; set; }
     
         public virtual Bolumler Bolumler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tarihler> Tarihler { get; set; }
     }
 }

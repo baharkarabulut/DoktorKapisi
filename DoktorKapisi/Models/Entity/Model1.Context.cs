@@ -26,11 +26,14 @@ namespace DoktorKapisi.Models.Entity
         }
     
         public virtual DbSet<Bolumler> Bolumler { get; set; }
-        public virtual DbSet<DoktorKayit> DoktorKayit { get; set; }
         public virtual DbSet<Randevu> Randevu { get; set; }
         public virtual DbSet<UyeAlim> UyeAlim { get; set; }
         public virtual DbSet<Yorumlar> Yorumlar { get; set; }
         public virtual DbSet<DoktorGiris> DoktorGiris { get; set; }
         public virtual DbSet<Doktorlar> Doktorlar { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tarihler> Tarihler { get; set; }
+        public virtual DbSet<Sehirler> Sehirler { get; set; }
+        public virtual DbSet<Cinsiyet> Cinsiyet { get; set; }
     }
 }

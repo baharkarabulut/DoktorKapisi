@@ -12,21 +12,18 @@ namespace DoktorKapisi.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Bolumler
+    public partial class Tarihler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bolumler()
+        public Tarihler()
         {
             this.Doktorlar = new HashSet<Doktorlar>();
-            this.DoktorGiris = new HashSet<DoktorGiris>();
         }
     
-        public int id { get; set; }
-        public string BolumAdi { get; set; }
+        public int Id { get; set; }
+        public Nullable<System.DateTime> Tarih { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Doktorlar> Doktorlar { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DoktorGiris> DoktorGiris { get; set; }
     }
 }

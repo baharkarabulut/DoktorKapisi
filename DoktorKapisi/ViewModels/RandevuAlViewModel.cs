@@ -9,6 +9,5 @@ namespace DoktorKapisi.ViewModels
     public class RandevuAlViewModel
     {
         public List<Doktorlar> DoktorListesi{ get; set; }
-
     }
 }

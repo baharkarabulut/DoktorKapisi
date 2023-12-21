@@ -16,6 +16,8 @@ namespace DoktorKapisi.Controllers
         {
             var bolumler = db.Bolumler.ToList();
 
+            var yorumlar = db.Yorumlar.ToList();
+
             var bolumlerList = new List<SelectListItem>();
 
             foreach (var bolum in bolumler)
@@ -25,7 +27,9 @@ namespace DoktorKapisi.Controllers
 
             var model = new AnasayfaViewModel
             {
-                BolumListesi = bolumlerList
+                BolumListesi = bolumlerList,
+                SliderListesi = bolumler.ToList(),
+                YorumlarListesi = yorumlar.ToList()
             };
 
             return View(model);
